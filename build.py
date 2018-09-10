@@ -1,6 +1,6 @@
 import shutit
 
-s = shutit.create_session(session_type='bash', loglevel='debug', vagrant_memory=4096, vagrant_cpu=2)
+s = shutit.create_session(session_type='bash', loglevel='debug', vagrant_memory=4096)
 s.send('rm -rf /tmp/tf_build && mkdir -p /tmp/tf_build')
 s.send('cd /tmp/tf_build')
 s.send('git clone https://github.com/hashicorp/terraform.git')
@@ -22,7 +22,7 @@ s.send('go get github.com/golang/mock/gomock')
 s.send('go install github.com/golang/mock/mockgen')
 s.send('cd /opt/gopath/src/github.com/hashicorp/terraform/')
 s.send('make fmt')
-s.send('make test')
+#s.send('make test')
 s.send('make bin')
 s.pause_point('')
-s.logout(command='vagrant ssh')
+s.logout()
